@@ -3,4 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  PASSSWORD_REGEX = /\A(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+\z/
+
+  validates :password, format: { with: PASSSWORD_REGEX, message: 'は6文字以上で、半角英字と半角数字の両方を含めてください' }
+  validates :nickname, presence: true
 end
