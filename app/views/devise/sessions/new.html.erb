@@ -1,34 +1,30 @@
 <%= render "shared/second-header"%>
+<div class="d-flex align-items-center py-4 bg-body-tertiary">
+  <div class="form-signin w-50 m-auto">
+    <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+      <h1 class="h3 mb-3 fw-normal text-center">Please sign in</h1>
+      
+      <div class='login-flash-message'>
+        <%= flash[:notice] %>
+        <%= flash[:alert] %>
+      </div>
 
-<%= form_with model: @user,url: user_session_path,class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      ユーザー情報入力
-    </h1>
-  </div>
-  <div class='login-flash-message'>
-    <%= flash[:notice] %>
-    <%= flash[:alert] %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">メールアドレス</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・携帯どちらでも可", autofocus: true %>
-  </div>
-  <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">パスワード</label>
-      <span class="indispensable">必須</span>
-    </div>
-    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"" %>
-  </div>
-  <div class='login-btn'>
-    <%= f.submit "ログイン" ,class:"login-green-btn" %>
+      <div class="form-floating">
+        <%= f.email_field :email, class: 'form-control', id: 'floatingInput', placeholder: 'name@example.com' %>
+        <label for="floatingInput">Email address</label>
+      </div>
+
+      <div class="form-floating">
+        <%= f.password_field :password, class: 'form-control', id: 'floatingPassword', placeholder: 'Password' %>
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="mx-auto p-2 w-50" >
+      <%= f.submit "Sign in", class: 'btn btn-primary w-100 mt-3 py-2' %>
+      </div>
+
+    <% end %>
   </div>
 </div>
-<% end %>
 
 <%= render "shared/second-footer"%>

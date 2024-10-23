@@ -1,27 +1,32 @@
-<%# CSS・・・assets/stylesheets/shared/header.css %>
+
 <header class='top-page-header'>
-  <div class='search-bar-contents'>
-    <%= link_to image_tag("", class:"furima-icon"), "/" %>
-    <form class="search-form" action="#">
-      <input class='input-box' placeholder='キーワードから探す'>
-      <button class="search-button">
-        <%= image_tag "search.png", class:"search-icon" %>
-      </button>
-    </form>
-  </div>
-  <div class='nav'>
-    <ul class='lists-left'>
-      <li><%= link_to 'カテゴリー', "#", class: "category-list" %></li>
-      <li><%= link_to 'ブランド', "#", class: "brand-list" %></li>
-    </ul>
-    <ul class='lists-right'>
-      <% if user_signed_in? %>
-      <li><%= link_to current_user.nickname, "#", class: "user-nickname" %> </li> 
-      <li><%= link_to 'ログアウト', destroy_user_session_path, data: {turbo_method: :delete}, class: "logout" %></li>
-      <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-      <% end %>
-    </ul>
-  </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark py-3 sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex" href="#">
+          <%= image_tag 'logo-only.png', class: "logo" %>
+          <h2 class="ms-3 pt-2 text-white">Workplace Search</h2>
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto ">
+          <% if user_signed_in? %>
+            <li class="nav-item p-2">
+              <a class="nav-link" href="#home">Session</a>
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link" href="#services">レビュー投稿</a>
+            </li>
+            <li class="nav-item p-2">
+              <a class="nav-link" href="#features">マイページ</a>
+            </li>
+            <li class= "navbar-user ms-4 my-auto "> ユーザー：<%= current_user.nickname %> </li> 
+            <li ><%= link_to "ログアウト", destroy_user_session_path, class: "btn btn-danger ms-3", data: { turbo_method: :delete } %></li>
+          <% else %>
+          <li ><%= link_to 'ログイン', new_user_session_path, class: "btn btn-light ms-3" %></li>
+          <li ><%= link_to '新規登録', new_user_registration_path, class: "btn btn-primary ms-3" %></li>
+          <% end %>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
 </header>
