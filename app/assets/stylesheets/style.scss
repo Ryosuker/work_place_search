@@ -89,6 +89,7 @@ section {
   transition: all 0.35s ease;
 }
 
+
 .card-effect:hover {
   box-shadow: none;
   transform: translateY(5px);
@@ -191,34 +192,6 @@ section {
   width: 125px;
   height: 125px;
   border-radius: 100px;
-}
-
-.social-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-icons a {
-  width: 34px;
-  height: 34px;
-  background-color: var(--primary);
-  border: 2px solid var(--primary);
-  color: #fff;
-  /* iのアイコンをaの中で中央揃えしてるみたい。
-  １つの要素に対して中央に寄せるときに親要素に
-  flexを付ける場合もある。 */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 100px;
-  margin-left: 5px;
-  transition: all 0.4s ease;
-}
-
-.social-icons a:hover {
-  color: var(--primary);
-  background-color: transparent;
 }
 
 form input.form-control {
