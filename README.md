@@ -1,14 +1,24 @@
-# README
+# アプリケーション名
+Workplace Search
 
-* Ruby version
+# URL
+https://work-place-search.onrender.com
 
-* System dependencies
+# アプリケーションを作成した背景
+作成者が、出先で勉強や仕事をする場所を探すのにGoogleMapを使って探していたが
+イマイチ所望する条件の場所が探しにくかったりしたのでこんなのあったらいいなを作りました。
+**課題点**
+- Web会議したい、静かな場所で勉強したい等、用途によって場所が限られる
+- どのくらいの作業スペースなのか写真がない
+- 場所の設備の情報が載ってない/正確でない
 
-* Configuration
+#　機能
+##　実装済み機能
 
-* Database creation
 
-* Database initialization
+##　実装予定の機能
+
+
 # テーブル設計
 
 ## users テーブル
