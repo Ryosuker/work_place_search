@@ -14,7 +14,7 @@ https://work-place-search.onrender.com
 
 # 機能
 ## トップページ
-
+[![Image from Gyazo](https://i.gyazo.com/7d4308de247e33877278c4c9082188f9.gif)](https://gyazo.com/7d4308de247e33877278c4c9082188f9)
 ## 実装機能
 
 
@@ -114,9 +114,12 @@ https://work-place-search.onrender.com
 
 ### Association
 - has_many :places
+<<<<<<< HEAD
 
 ### 使用しているバージョンなど
 ruby 3.2.0
 Rails 7.0.8.4
 MySQL 8.0.39
 Bootstrap 5.3.3
+=======
+>>>>>>> 642808d51a246b7de155fda0b26669170b9f51df
