@@ -14,7 +14,7 @@ https://work-place-search.onrender.com
 
 # 機能
 ## トップページ
-
+[![Image from Gyazo](https://i.gyazo.com/7d4308de247e33877278c4c9082188f9.gif)](https://gyazo.com/7d4308de247e33877278c4c9082188f9)
 ## 実装機能
 
 
