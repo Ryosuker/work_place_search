@@ -24,7 +24,7 @@ Google Map上から検索できます
 [![Image from Gyazo](https://i.gyazo.com/369e4bb5bac07f47ca2542325f0651b2.gif)](https://gyazo.com/369e4bb5bac07f47ca2542325f0651b2)
 
 ## 3.施設詳細
-出品した商品について、編集することができます。その際に、ユーザーの手間を省くため出品時の情報が表示されるようになっています。
+登録された施設の詳細情報を閲覧することができます。
 [![Image from Gyazo](https://i.gyazo.com/c03816ee3aa1a62752aefcf2052f3fa0.jpg)](https://gyazo.com/c03816ee3aa1a62752aefcf2052f3fa0)
 
 # データベース設計
