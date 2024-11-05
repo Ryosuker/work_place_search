@@ -114,3 +114,9 @@ https://work-place-search.onrender.com
 
 ### Association
 - has_many :places
+
+### 使用しているバージョンなど
+ruby 3.2.0
+Rails 7.0.8.4
+MySQL 8.0.39
+Bootstrap 5.3.3
