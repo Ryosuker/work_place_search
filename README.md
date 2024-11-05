@@ -15,13 +15,14 @@ https://work-place-search.onrender.com
 # 機能
 ## トップページ
 <img src="https://i.gyazo.com/7d4308de247e33877278c4c9082188f9.gif" width="800px">
+
 ## 1.ユーザー登録機能
 ユーザー登録することでレビュー投稿できるようになります。
 （ユーザー登録していない人でも検索見ることは可能です。）
 
 ## 2.地図検索機能
 Google Map上から検索できます
-<img src="https://gyazo.com/e7337f200facb7012006c9ad85c39629" >
+[![Image from Gyazo](https://i.gyazo.com/e7337f200facb7012006c9ad85c39629.gif)](https://gyazo.com/e7337f200facb7012006c9ad85c39629)
 ## 3.施設詳細
 登録された施設の詳細情報を閲覧することができます。
 
