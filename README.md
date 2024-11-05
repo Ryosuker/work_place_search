@@ -21,7 +21,7 @@ https://work-place-search.onrender.com
 
 ## 2.地図検索機能
 Google Map上から検索できます
-<img src="https://gyazo.com/e7337f200facb7012006c9ad85c39629" width="800px">
+<img src="https://gyazo.com/e7337f200facb7012006c9ad85c39629" >
 ## 3.施設詳細
 登録された施設の詳細情報を閲覧することができます。
 
