@@ -14,7 +14,7 @@ https://work-place-search.onrender.com
 
 # 機能
 ## トップページ
-
+[![Image from Gyazo](https://i.gyazo.com/7d4308de247e33877278c4c9082188f9.gif)](https://gyazo.com/7d4308de247e33877278c4c9082188f9)
 ## 1.ユーザー登録機能
 ユーザー登録することでレビュー投稿できるようになります。
 （ユーザー登録していない人でも検索見ることは可能です。）
