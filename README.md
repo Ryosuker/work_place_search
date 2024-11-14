@@ -53,27 +53,39 @@ Google Map上から検索できます
 | place   | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user, place
+- belongs_to :user, work_place
 - has_one_attached :image
 
-## workplaces テーブル
-| Column        | Type       | Options                        |
-| ------------- | ---------- | ------------------------------ |
-| name          | string     | null: false                    |
-| address       | string     | null: false                    |
-| latitude      | float      | null: false,                   |
-| longitude     | float      | null: false                    |
-| place_type    | references | null: false, foreign_key: true |
-| area          | references | null: false, foreign_key: true |
-| googleplaceId | string     |                                |
-| phonenumber   | string     |                                |
-| website       | string     |                                |
+## work_places テーブル
+| Column        | Type    | Options                               |
+| ------------- | ------- | ------------------------------------- |
+| type          | string  | null: false                           |
+| name          | string  | null: false                           |
+| postal_code   | string  |                                       |
+| area          | string  |                                       |
+| address       | string  |                                       |
+| phone_number  | string  |                                       |
+| opening_hours | string  |                                       |
+| website       | string  |                                       |
+| latitude      | decimal | null: false, precision: 10, scale: 7, |
+| longitude     | decimal | null: false, precision: 10, scale: 7, |
+| place_id      | string  | null: false,                          |
+
 
 ### Association
-- belongs_to : place
+- has_many :work_place_images, dependent: :destroy
+- has_many :reviews, dependent: :destroy
 
+## work_place_images テーブル
+| Column     | Type       | Options           |
+| ---------- | ---------- | ----------------- |
+| image      | string     |                   |
+| work_place | references | foreign_key: true |
 
-## Places_Facilities テーブル
+### Association
+-  belongs_to :work_place
+
+## places_facilities テーブル
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | place_id     | references | null: false, foreign_key: true |
@@ -84,7 +96,7 @@ Google Map上から検索できます
 - belongs_to :facility
 
 
-## Facilities テーブル
+## facilities テーブル
 | Column | Type   | Options |
 | ------ | ------ | ------- |
 | name   | string |         |
@@ -92,27 +104,8 @@ Google Map上から検索できます
 ### Association
 - has_many :places, through: places_facilities
 
-## OpeningHours テーブル
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| place_id    | references | null: false, foreign_key: true |
-| day_of_week | string     |                                |
-| open_time   | time       |                                |
-| close_time  | time       |                                |
 
-### Association
-- has_many :places, through: places_facilities
-
-## Place_type テーブル
-| Column            | Type   | Options     |
-| ----------------- | ------ | ----------- |
-| name              | string | null: false |
-| google_place_type | string | null: false |
-
-### Association
-- belongs_to  :place
-
-## Areas テーブル
+## areas テーブル
 | Column     | Type   | Options     |
 | ---------- | ------ | ----------- |
 | name       | string | null: false |
