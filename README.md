@@ -56,7 +56,7 @@ Google Map上から検索できます
 - belongs_to :user, place
 - has_one_attached :image
 
-## places テーブル
+## workplaces テーブル
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | name          | string     | null: false                    |
