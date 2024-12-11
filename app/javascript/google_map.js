@@ -116,12 +116,12 @@ function initMap() {
     filterSearch(currentFilter);
     setFlashMessage("success", "カフェのみで検索ができます");
   });
-  document.getElementById('search-cafe-button').addEventListener('click', function () {
+  document.getElementById('search-cowork-button').addEventListener('click', function () {
     currentFilter = 'cowork';
     filterSearch(currentFilter);
     setFlashMessage("success", "コワーキングスペースのみで検索ができます");
   });
-  document.getElementById('search-cafe-button').addEventListener('click', function () {
+  document.getElementById('search-library-button').addEventListener('click', function () {
     currentFilter = 'library';
     filterSearch(currentFilter);
     setFlashMessage("success", "図書館のみで検索ができます");
@@ -132,6 +132,7 @@ function initMap() {
   pin.addListener('dragend', updateSearch);
 }
 window.initMap = initMap;
+
 
 function updateSearch() {
   pin.setPosition(map.getCenter());
@@ -157,48 +158,48 @@ function filterSearch(filterType) {
     filterParam = 'is_library_filter=true';
   } 
 
-  // fetchを使用して、mapsコントローラのhomeアクションへリクエストを送信する。この際に、クエリ文字列として緯度と経度をもたせる。
-  // こうすることで、homeコントローラでparams[:latitude」の形で使用できる。
-  fetch(`/home.json?latitude=${circleLatLng.latitude}&longitude=${circleLatLng.longitude}&${filterParam}`)
+  // fetchを使用して、mapsコントローラのindexアクションへリクエストを送信する。この際に、クエリ文字列として緯度と経度をもたせる。
+  // こうすることで、indexコントローラでparams[:latitude」の形で使用できる。
+  fetch(`/index.json?latitude=${circleLatLng.latitude}&longitude=${circleLatLng.longitude}&${filterParam}`)
     .then(response => response.json())
     .then(data => {
       clearMarkers();
     
-      updateShopList('cafes', data.cafes);
-      updateShopList('coworks', data.coworks);
-      updateShopList('libraries', data.libraries);
+      updatePlaceList('cafes', data.cafes);
+      updatePlaceList('coworks', data.coworks);
+      updatePlaceList('libraries', data.libraries);
     })
     .catch(error => console.error('Error:', error));
 }
 // 検索でヒットした施設を表示し、マップ上にマーカーを表示する関数
-function updateShopList(type, shops) {
-  const shopsListElement = document.getElementById(`${type}-list`);
-  shopsListElement.innerHTML = '';
+function updatePlaceList(type, places) {
+  const placesListElement = document.getElementById(`${type}-list`);
+  placesListElement.innerHTML = '';
   const userIsLoggedIn = gon.user_logged_in;//⭐️あとで確認
   
-  if (shops && shops.length > 0) {
+  if (places && places.length > 0) {
 
-    const limitedShops = shops.slice(0, 15);
+    const limitedPlaces = places.slice(0, 15);
 
-    addMarkers(limitedShops, type);
+    addMarkers(limitedPlaces, type);
 
-    limitedShops.forEach(shop => {
-      const shop_image = shop.shop_images[0];
+    limitedPlaces.forEach(place => {
+      const place_image = place.place_images[0];
 
-      const shopCard = document.createElement('div');
-      shopCard.className = 'card w-11/12 bg-base-200 border-gray-500 shadow-xl m-2 md:m-3';
+      const placeCard = document.createElement('div');
+      placeCard.className = 'card w-11/12 bg-base-200 border-gray-500 shadow-xl m-2 md:m-3';
 
       const cardContent = `
         <div class="flex" data-controller="modal">
-          <a href="/shops/${shop.id}">
-            <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=200&maxwidth=200&photo_reference=${shop_image.image}&key=${API_KEY}" class="p-3 md:p-5 w-20 h-20 md:w-28 md:h-28 xl:w-36 xl:h-36 rounded-3xl">
+          <a href="/places/${place.id}">
+            <img src="https://maps.googleapis.com/maps/api/place/photo?maxheight=200&maxwidth=200&photo_reference=${place_image.image}&key=${API_KEY}" class="p-3 md:p-5 w-20 h-20 md:w-28 md:h-28 xl:w-36 xl:h-36 rounded-3xl">
           </a>
           <div class="flex-col">
             <ul>
-              <li class="xl:pl-1 pt-3 text-[9px] md:text-sm xl:text-xl underline hover:text-yellow-500"><a href="/shops/${shop.id}">${shop.name}</a></li>
-              <li class="pl-1 xl:pl-3 mt-1 md:mt-1.5 text-[7px] md:text-[10px] xl:text-xs">${shop.address}</li>
-              <li class="pl-1 xl:pl-3 mt-1 xl:mt-1.5 text-[7px] md:text-[10px] xl:text-xs">${shop.phone_number}</li>
-              <a href="https://www.google.com/maps/search/?api=1&query=${shop.name}&query_place_id=${shop.place_id}" target=_"blank" rel="noopener noreferrer">
+              <li class="xl:pl-1 pt-3 text-[9px] md:text-sm xl:text-xl underline hover:text-yellow-500"><a href="/places/${place.id}">${place.name}</a></li>
+              <li class="pl-1 xl:pl-3 mt-1 md:mt-1.5 text-[7px] md:text-[10px] xl:text-xs">${place.address}</li>
+              <li class="pl-1 xl:pl-3 mt-1 xl:mt-1.5 text-[7px] md:text-[10px] xl:text-xs">${place.phone_number}</li>
+              <a href="https://www.google.com/maps/search/?api=1&query=${place.name}&query_place_id=${place.place_id}" target=_"blank" rel="noopener noreferrer">
               <li class="mb-1.5 py-1 md:py-1.5 xl:py-2 px-2 mt-1 xl:mt-1.5 text-[8px] md:text-[10px] xl:text-xs text-center rounded-full bg-blue-500 text-white font-bold w-24 md:w-28 hover:bg-blue-600">
                 <i class="fa-solid fa-location-dot"></i>
                 GoogleMap
@@ -206,22 +207,17 @@ function updateShopList(type, shops) {
               </a>
             </ul>
           </div>
-          <a href="/shop_saved_lists" data-turbo-frame="modal" class="ml-auto mr-3 mt-auto mr-3 md:mr-8 mb-3 md:mb-5 bookmark-icon" data-shop-id="${shop.id}">
-            <div class="tooltip" data-tip="リストへ保存">
-              ${userIsLoggedIn ? '<i class="fa-solid fa-folder w-7 xl:w-10 md:h-5 xl:h-6 g-4 hover:text-yellow-500" data-modal-target="myModal"></i>' : ''}
-            </div>
-          </a>
         </div>
       `;
 
-      shopCard.innerHTML = cardContent;
-      shopsListElement.appendChild(shopCard);
+      placeCard.innerHTML = cardContent;
+      placesListElement.appendChild(placeCard);
     });
   } else {
-    const noShopsElement = document.createElement('p');
-    noShopsElement.textContent = '近くにショップはありません';
-    noShopsElement.className = 'text-xs md:text-lg pt-5 text-center mb-5';
-    shopsListElement.appendChild(noShopsElement);
+    const noPlacesElement = document.createElement('p');
+    noPlacesElement.textContent = '近くにショップはありません';
+    noPlacesElement.className = 'text-xs md:text-lg pt-5 text-center mb-5';
+    placesListElement.appendChild(noPlacesElement);
   }
 }
 //Mapにピンを置く
